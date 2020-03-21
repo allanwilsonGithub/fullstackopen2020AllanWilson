@@ -1,21 +1,18 @@
 import React from 'react'
 
-const DisplayNames = ( {countries, newFilterString} ) => {
-  const filteredNames = 0
-  const namesFound =  ListNames({ countries, newFilterString, filteredNames })
-  if (filteredNames < 10){             TODO How to get filtered names as a number from ListNames to use here
-    return namesFound
-  } else {
-    return (
-      <p>Too many matches. Refine your filter</p>
-    )}
-}
 
-const ListNames = ({ countries, newFilterString, filteredNames }) => countries.map((entry, i) => {
+const FilterCountries = ({ countries, newFilterString, filteredCountries}) => countries.map((entry, i) => {
   if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
-    filteredNames = filteredNames+1
-    console.log('FilteredNames: ', filteredNames)
-    console.log('newFilterString', newFilterString)
+    filteredCountries = [...filteredCountries, entry.name]
+    return filteredCountries
+  } else {
+    return null
+  }
+  })
+
+
+const ListNames = ({ countries, newFilterString }) => countries.map((entry, i) => {
+  if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
     return (
       <p key={i}>{entry.name}</p>
     )
@@ -23,6 +20,13 @@ const ListNames = ({ countries, newFilterString, filteredNames }) => countries.m
     return ""
   }
 })
+
+const DisplayNames = ({ countries, newFilterString }) => {
+  const FilteredCountries = FilterCountries(countries={countries}, newFilterString={newFilterString})
+  console.log('Filtered Countries:', FilteredCountries)
+  
+}
+
 
 export default DisplayNames
 

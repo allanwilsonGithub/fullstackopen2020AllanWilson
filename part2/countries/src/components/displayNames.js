@@ -1,10 +1,13 @@
 import React from 'react'
 
 
-const FilterCountries = ({ countries, newFilterString, filteredCountries}) => countries.map((entry, i) => {
+const FilterCountries = ({ countries, newFilterString }) => countries.map((entry, i) => {
+    console.log('Entry :', entry.name)
+    console.log('Filter String :', newFilterString)
   if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
-    filteredCountries = [...filteredCountries, entry.name]
-    return filteredCountries
+    console.log('Entry :', entry.name)
+    console.log('Filter String :', newFilterString)
+    return entry.name
   } else {
     return null
   }
@@ -23,8 +26,7 @@ const ListNames = ({ countries, newFilterString }) => countries.map((entry, i) =
 
 const DisplayNames = ({ countries, newFilterString }) => {
   const FilteredCountries = FilterCountries(countries={countries}, newFilterString={newFilterString})
-  console.log('Filtered Countries:', FilteredCountries)
-  
+  return FilteredCountries
 }
 
 

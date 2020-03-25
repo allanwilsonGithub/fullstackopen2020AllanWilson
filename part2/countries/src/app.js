@@ -6,7 +6,9 @@ import Filter from './components/filter'
 const App = () => {
   const [ countries, setCountries] = useState([])
 
-  const [ newFilterString, setNewFilterString ] = useState('1')
+  const [ newFilterString, setNewFilterString ] = useState('')
+
+  const [ filteredNames, setFilteredNames ] = useState([])
 
   useEffect(() => {
     axios
@@ -23,7 +25,7 @@ const App = () => {
   return (
     <div>
       <Filter newFilterString={newFilterString}  handleFilterChange={handleFilterChange} />
-      <DisplayNames countries={countries} newFilterString={newFilterString} />
+      <DisplayNames countries={countries} newFilterString={newFilterString} filteredNames={filteredNames} setFilteredNames={setFilteredNames}/>
     </div>
   )
 }

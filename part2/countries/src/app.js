@@ -22,12 +22,12 @@ const App = () => {
   const handleFilterChange = (event) => {
       setNewFilterString(event.target.value)
       setFilteredCountries([])
-      console.log('FC: ', filteredCountries)
       updateFilteredCountries()
   }
 
   const updateFilteredCountries = () => countries.map((entry, i) => {
     if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
+      console.log(filteredCountries)
       setFilteredCountries([...filteredCountries, entry.name.toLowerCase()])
     }
   })

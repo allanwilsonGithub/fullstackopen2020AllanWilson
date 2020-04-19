@@ -1,10 +1,10 @@
 import React from 'react'
 
- const Filter = ({ newFilterString , handleFilterChange }) => (
+ const Filter = ({ userInput , handleInputChange }) => (
        <div>
           find countries:  <input
-          value={newFilterString}
-          onChange={handleFilterChange}
+          value={userInput}
+          onChange={handleInputChange}
           />
        </div>
   )

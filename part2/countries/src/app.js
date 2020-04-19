@@ -19,23 +19,18 @@ const App = () => {
       })
   }, [])
 
-  const handleFilterChange = (event) => {
-      setNewFilterString(event.target.value)
-      setFilteredCountries([])
-      updateFilteredCountries()
+  const handleInputChange = (event) => {
+    console.log(event.target.value) 
+  //    setFilteredCountries(countries.filter ( country => {
+  //      return country.toLowerCase().includes(event.target.value.toLowerCase())
+  //      }))
   }
 
-  const updateFilteredCountries = () => countries.map((entry, i) => {
-    if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
-      console.log(filteredCountries)
-      setFilteredCountries([...filteredCountries, entry.name.toLowerCase()])
-    }
-  })
-  
+
   return (
     <div>
-      <Filter newFilterString={newFilterString}  handleFilterChange={handleFilterChange} />
-      <DisplayNames filteredCountries={filteredCountries} newFilterString={newFilterString}/>
+      <Filter newFilterString={newFilterString}  handleInputChange={handleInputChange} />
+      <DisplayNames filteredCountries={filteredCountries}/>
     </div>
   )
 }

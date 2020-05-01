@@ -26,10 +26,8 @@ const App = () => {
   return (
     <div>
       <Filter newFilterString={newFilterString}  handleInputChange={handleInputChange} />
-    </div>,
-    
-    { ConditionallyDisplayNames (countries, number_of_countries) }
-
+      <ConditionallyDisplayNames countries={countries} number_of_countries={number_of_countries}/>
+    </div>
   )
 }
 

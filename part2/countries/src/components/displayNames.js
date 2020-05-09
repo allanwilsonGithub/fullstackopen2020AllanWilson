@@ -1,19 +1,11 @@
 import React from 'react'
 
-function ConditionallyDisplayNames ({ countries, number_of_countries }) {
-  if (number_of_countries === 1) {
-      DisplayNames (countries)
-  } else {
-    return (
-    <p>Search returned too many countries. Please refine your search</p>
-  )
-  }
-}
 
-const DisplayNames = ({ countries }) => countries.map((entry, i) => {
+const DisplayNames = ({ countries,newFilterString }) => countries.map((entry, i) => {
+  if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
   return (
       <p key={i}>{entry.name}</p>
          )
-})
+}})
 
-export default { ConditionallyDisplayNames, DisplayNames }
+export default DisplayNames

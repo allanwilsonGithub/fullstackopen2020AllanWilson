@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import ConditionallyDisplayNames from './components/displayNames'
+import DisplayNames from './components/displayNames'
 import Filter from './components/filter'
 
 const App = () => {
@@ -17,16 +17,14 @@ const App = () => {
   }, [])
 
   const handleInputChange = (event) => {
-    console.log(event.target.value) 
+    console.log(event.target.value)
     setNewFilterString(event.target.value)
   }
-  
-  const number_of_countries = 2
 
   return (
     <div>
       <Filter newFilterString={newFilterString}  handleInputChange={handleInputChange} />
-      <ConditionallyDisplayNames countries={countries} number_of_countries={number_of_countries}/>
+      <DisplayNames countries={countries} newFilterString={newFilterString}/>
     </div>
   )
 }

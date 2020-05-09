@@ -8,6 +8,8 @@ const App = () => {
 
   const [ newFilterString, setNewFilterString ] = useState('')
 
+  const [ filteredCountries, setFilteredCountries] = useState([])
+
   useEffect(() => {
     axios
       .get('https://restcountries.eu/rest/v2/all')
@@ -19,12 +21,19 @@ const App = () => {
   const handleInputChange = (event) => {
     console.log(event.target.value)
     setNewFilterString(event.target.value)
+    FilterCountries(countries, newFilterString, filteredCountries, setFilteredCountries)
   }
+
+  const FilterCountries = (countries, newFilterString, filteredCountries, setFilteredCountries) => countries.map((entry, i) => {
+    if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
+        setFilteredCountries(...filteredCountries, entry.name.toLowerCase())
+      }
+    })
 
   return (
     <div>
       <Filter newFilterString={newFilterString}  handleInputChange={handleInputChange} />
-      <DisplayNames countries={countries} newFilterString={newFilterString}/>
+      <DisplayNames filteredCountries={filteredCountries} />
     </div>
   )
 }

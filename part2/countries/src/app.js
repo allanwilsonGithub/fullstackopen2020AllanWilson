@@ -18,13 +18,17 @@ const App = () => {
   }, [])
 
   const handleInputChange = (event) => {
+    ClearFilterCountries()
     FilterCountries(countries, event.target.value, filteredCountries, setFilteredCountries)
   }
 
+  const ClearFilterCountries = () => {
+    setFilteredCountries([])
+    }
+
   const FilterCountries = (countries, filterString, filteredCountries, setFilteredCountries) => countries.map((entry, i) => {
     if (entry.name.toLowerCase().includes(filterString.toLowerCase())){
-        console.log('country matches filter')
-        setFilteredCountries(...filteredCountries, entry.name.toLowerCase())
+        setFilteredCountries([...filteredCountries, entry.name.toLowerCase()])
       }
     })
 

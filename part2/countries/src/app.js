@@ -4,35 +4,32 @@ import DisplayNames from './components/displayNames'
 import Filter from './components/filter'
 
 const App = () => {
-  const [ countries, setCountries] = useState([])
+  const [ countries, setCountries ] = useState([])
 
-  const [ newFilterString, setNewFilterString ] = useState('')
-
-  const [ filteredCountries, setFilteredCountries] = useState([])
+  const [ filteredCountries, setFilteredCountries ] = useState([])
 
   useEffect(() => {
     axios
       .get('https://restcountries.eu/rest/v2/all')
       .then(response => {
         setCountries(response.data)
+        setFilteredCountries(response.data)
       })
   }, [])
 
   const handleInputChange = (event) => {
-    console.log(event.target.value)
-    setNewFilterString(event.target.value)
-    FilterCountries(countries, newFilterString, filteredCountries, setFilteredCountries)
+    FilterCountries(countries, event.target.value, filteredCountries, setFilteredCountries)
   }
 
-  const FilterCountries = (countries, newFilterString, filteredCountries, setFilteredCountries) => countries.map((entry, i) => {
-    if (entry.name.toLowerCase().includes(newFilterString.toLowerCase())){
+  const FilterCountries = (countries, filterString, filteredCountries, setFilteredCountries) => countries.map((entry, i) => {
+    if (entry.name.toLowerCase().includes(filterString.toLowerCase())){
         setFilteredCountries(...filteredCountries, entry.name.toLowerCase())
       }
     })
 
   return (
     <div>
-      <Filter newFilterString={newFilterString}  handleInputChange={handleInputChange} />
+      <Filter handleInputChange={handleInputChange} />
       <DisplayNames filteredCountries={filteredCountries} />
     </div>
   )

@@ -28,7 +28,7 @@ const App = () => {
 
   const FilterCountries = (countries, filterString, filteredCountries, setFilteredCountries) => countries.map((entry, i) => {
     if (entry.name.toLowerCase().includes(filterString.toLowerCase())){
-        setFilteredCountries([...filteredCountries, entry.name.toLowerCase()])
+        setFilteredCountries([...filteredCountries, entry])
       }
     })
 

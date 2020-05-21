@@ -5,26 +5,21 @@ import Filter from './components/filter'
 
 const App = () => {
   const [ countries, setCountries ] = useState([])
+  const [ allCountries, setAllCountries ] = useState([])
 
   useEffect(() => {
     axios
       .get('https://restcountries.eu/rest/v2/all')
       .then(response => {
         setCountries(response.data)
-        const allCountries = response.data
+        setAllCountries(response.data)
       })
   }, [])
 
   const handleInputChange = ( event )  => {
-    setCountries ([])
-    filterCountries(event)
+      const filteredCountries = allCountries.filter(entry => entry.name.toLowerCase().includes(event.target.value.toLowerCase()))
+      setCountries(filteredCountries)
     }
-
-    const filterCountries = ( event )  => countries.map((entry, i) => {
-      if (entry.name.toLowerCase().includes(event.target.value.toLowerCase())){
-        setCountries([...countries, entry])
-      }
-    })
 
   return (
     <div>

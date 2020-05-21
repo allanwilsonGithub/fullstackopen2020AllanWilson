@@ -16,16 +16,15 @@ const App = () => {
   }, [])
 
   const handleInputChange = ( event )  => {
-    console.log('filter: ', event.target.value)
-    //if (entry.name.toLowerCase().includes(event.target.value.toLowerCase())){
-    //    setCountries([...countries, entry])
-    //  }
+    setCountries ([])
+    filterCountries(event)
     }
 
-    //const handleNoteChange = (event) => {
-    //  console.log(event.target.value)
-    //  setNewNote(event.target.value)
-    //}
+    const filterCountries = ( event )  => countries.map((entry, i) => {
+      if (entry.name.toLowerCase().includes(event.target.value.toLowerCase())){
+        setCountries([...countries, entry])
+      }
+    })
 
   return (
     <div>

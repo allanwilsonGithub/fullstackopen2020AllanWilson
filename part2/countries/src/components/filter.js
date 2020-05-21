@@ -1,6 +1,6 @@
 import React from 'react'
 
- const Filter = ({ userInput , handleInputChange }) => (
+ const Filter = ({ userInput , handleInputChange}) => (
        <div>
           find countries:  <input
           value={userInput}

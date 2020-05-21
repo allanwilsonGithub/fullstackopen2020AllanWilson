@@ -18,7 +18,16 @@ const App = () => {
 
   const handleInputChange = ( event )  => {
       const filteredCountries = allCountries.filter(entry => entry.name.toLowerCase().includes(event.target.value.toLowerCase()))
-      setCountries(filteredCountries)
+      if (filteredCountries.length < 11 && filteredCountries.length > 1) {
+        console.log(filteredCountries.length, ' countries found! continue coding...')
+        setCountries(filteredCountries)
+      } else if (filteredCountries.length === 1) {
+        console.log(filteredCountries.length, " 1 country found. Let's do this...")
+        setCountries(filteredCountries)
+      } else {
+        console.log(filteredCountries.length, ' countries found! Please refine your search')
+        setCountries(filteredCountries)
+      }
     }
 
   return (

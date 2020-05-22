@@ -14,13 +14,13 @@ const DisplayWeather = ( city ) => {
           console.log(currentWeather.current.weather_icons[0])
           console.log(currentWeather.current.wind_speed)
           console.log(currentWeather.current.wind_dir)
-        })
+          })
+          return (
+            <div>
+            <h3>Weather in { city }</h3>
+            </div>
+               )
 
-    return (
-      <div>
-      <h3>Weather in { city }</h3>
-      </div>
-         )
 }
 
 export default DisplayWeather

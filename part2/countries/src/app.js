@@ -24,7 +24,7 @@ const App = () => {
   const renderDisplayArea = ( countries ) => {
     if (countries.length < 11 && countries.length > 1) {
         return (
-          <DisplayNames countries={countries}/>
+          <DisplayNames countries={countries} setCountries={setCountries}/>
         )
       } else if (countries.length === 1) {
         return (
@@ -49,8 +49,6 @@ const App = () => {
         <p>... Search returns {countries.length} countries . Please refine your search</p>
       )
       }
-      
-
     }
 
     

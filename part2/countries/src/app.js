@@ -6,7 +6,6 @@ import Filter from './components/filter'
 const App = () => {
   const [ countries, setCountries ] = useState([])
   const [ allCountries, setAllCountries ] = useState([])
-  const [ displayMode, setDisplayMode ] = useState(1)
 
   useEffect(() => {
     axios
@@ -19,27 +18,47 @@ const App = () => {
 
   const handleInputChange = ( event )  => {
       const filteredCountries = allCountries.filter(entry => entry.name.toLowerCase().includes(event.target.value.toLowerCase()))
-      if (filteredCountries.length < 11 && filteredCountries.length > 1) {
-        console.log(filteredCountries.length, ' countries found! continue coding...')
-        setCountries(filteredCountries)
-        setDisplayMode(1)
-      } else if (filteredCountries.length === 1) {
-        console.log(filteredCountries.length, " 1 country found. Let's do this...")
-        setCountries(filteredCountries)
-        setDisplayMode(3)
-      } else {
-        console.log(filteredCountries.length, ' countries found! Please refine your search')
-        setCountries(filteredCountries)
-        setDisplayMode(2)
-      }
+      setCountries(filteredCountries)
     }
 
+  const renderDisplayArea = ( countries ) => {
+    if (countries.length < 11 && countries.length > 1) {
+        return (
+          <DisplayNames countries={countries}/>
+        )
+      } else if (countries.length === 1) {
+        return (
+          <div>
+            <h1>{countries[0].name}</h1>
+            <p>Capital: {countries[0].capital}</p>
+            <p>Population: {countries[0].population}</p>
+            <h3>Languages</h3>
+            <ul>
+            {countries[0].languages.map((entry, i) => {
+                return (
+                  <li key={i}>{entry.name}</li>
+                  )
+                }
+              )}
+            </ul>
+            <img src={countries[0].flag} border='1px' alt="country flag" width="200" height="150"></img>
+          </div>
+        )
+      } else {
+      return (
+        <p>... Search returns {countries.length} countries . Please refine your search</p>
+      )
+      }
+      
+
+    }
 
     
   return (
     <div>
+      <h1 style={{ color: '#29701e' }}>Country information search tool</h1>
       <Filter handleInputChange={handleInputChange} countries={countries}/>
-      <DisplayNames countries={countries} displayMode={displayMode}/>
+      { renderDisplayArea(countries) }
     </div>
   )
 }

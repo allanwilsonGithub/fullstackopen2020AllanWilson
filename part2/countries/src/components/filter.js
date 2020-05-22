@@ -2,7 +2,7 @@ import React from 'react'
 
  const Filter = ({ userInput , handleInputChange}) => (
        <div>
-          find countries:  <input
+          Enter search string  <input
           value={userInput}
           onChange={handleInputChange}
           />

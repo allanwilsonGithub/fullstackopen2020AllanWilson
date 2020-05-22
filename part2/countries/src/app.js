@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DisplayNames from './components/displayNames'
+import DisplayWeather from './components/displayWeather'
 import Filter from './components/filter'
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
               )}
             </ul>
             <img src={countries[0].flag} border='1px' alt="country flag" width="200" height="150"></img>
+            {DisplayWeather(countries[0].capital)}
           </div>
         )
       } else {

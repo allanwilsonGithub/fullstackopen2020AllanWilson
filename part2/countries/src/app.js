@@ -7,6 +7,9 @@ import Filter from './components/filter'
 const App = () => {
   const [ countries, setCountries ] = useState([])
   const [ allCountries, setAllCountries ] = useState([])
+  const [ currentWeather, setCurrentWeather ] = useState('')
+
+  const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY
 
   useEffect(() => {
     axios
@@ -17,6 +20,14 @@ const App = () => {
       })
   }, [])
 
+  useEffect(() => {
+    axios
+      .get(`http://api.weatherstack.com/current?access_key=${REACT_APP_API_KEY}&query={countries[0].name}`)
+      .then(response => {
+        setCurrentWeather(response.data)
+      })
+  }, [countries])
+  
   const handleInputChange = ( event )  => {
       const filteredCountries = allCountries.filter(entry => entry.name.toLowerCase().includes(event.target.value.toLowerCase()))
       setCountries(filteredCountries)
@@ -43,7 +54,7 @@ const App = () => {
               )}
             </ul>
             <img src={countries[0].flag} border='1px' alt="country flag" width="200" height="150"></img>
-            {DisplayWeather(countries[0].capital)}
+            {DisplayWeather(currentWeather)}
           </div>
         )
       } else {

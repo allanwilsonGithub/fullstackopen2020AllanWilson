@@ -21,13 +21,15 @@ const App = () => {
   }, [])
 
   useEffect(() => {
+    if (countries[0])
     axios
-      .get(`http://api.weatherstack.com/current?access_key=${REACT_APP_API_KEY}&query={countries[0].name}`)
+      .get(`http://api.weatherstack.com/current?access_key=${REACT_APP_API_KEY}&query=${countries[0].name}`)
       .then(response => {
         setCurrentWeather(response.data)
       })
   }, [countries])
-  
+
+
   const handleInputChange = ( event )  => {
       const filteredCountries = allCountries.filter(entry => entry.name.toLowerCase().includes(event.target.value.toLowerCase()))
       setCountries(filteredCountries)

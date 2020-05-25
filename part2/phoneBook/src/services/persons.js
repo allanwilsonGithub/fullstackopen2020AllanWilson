@@ -17,4 +17,4 @@ const deletePerson = ( IDtoDelete , name, updatePersonsFromDb) => {
   return request.then(response => response.data).then(updatePersonsFromDb)
 }}
 
-export default { getAll , updatePersons , deletePerson }
+export default { getAll, updatePersons , deletePerson }

@@ -76,10 +76,17 @@ const App = () => {
   const Notification = ({ message }) => {
     if (message === null) {
     return null
+  } else if (message.includes("already deleted")) {
+    
+    return (
+      <div className="error-red">
+        {message}
+      </div>
+    )
   }
-
+  
   return (
-    <div className="error">
+    <div className="error-green">
       {message}
     </div>
   )

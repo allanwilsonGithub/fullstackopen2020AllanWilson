@@ -23,7 +23,13 @@ const App = () => {
   const addPerson = (event) => {
       event.preventDefault()
       if (typeof (persons.find(x => x.name === newName)) != "undefined") {
-          window.alert(`${newName} already exists in the phonebook`)
+
+      if (window.confirm(`${newName} already exists in the phonebook. Replace old number with new number?`)) {
+         console.log("You pressed OK!")
+      } else {
+         console.log("You pressed Cancel!")
+      }
+
       } else {
           setPersons([...persons, { name: newName, number: newNumber }])
           personsService

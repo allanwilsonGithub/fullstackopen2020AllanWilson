@@ -11,10 +11,15 @@ const updatePersons = newPerson => {
   return request.then(response => response.data)
 }
 
+const updateExistingPerson = ( IDtoUpdate, personToUpdate ) => {
+  const request = axios.put(`${baseUrl}/${IDtoUpdate}`, personToUpdate)
+  return request.then(response => response.data)
+}
+
 const deletePerson = ( IDtoDelete , name, updatePersonsFromDb) => {
   if (window.confirm(`Delete ${name}?`)) {
   const request = axios.delete(`${baseUrl}/${IDtoDelete}`)
   return request.then(response => response.data).then(updatePersonsFromDb)
 }}
 
-export default { getAll, updatePersons , deletePerson }
+export default { getAll, updatePersons , updateExistingPerson, deletePerson }

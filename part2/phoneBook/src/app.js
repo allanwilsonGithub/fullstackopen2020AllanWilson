@@ -25,7 +25,14 @@ const App = () => {
       if (typeof (persons.find(x => x.name === newName)) != "undefined") {
 
       if (window.confirm(`${newName} already exists in the phonebook. Replace old number with new number?`)) {
-         console.log("You pressed OK!")
+        const idToUpdate = persons.find(x => x.name === newName).id
+        personsService
+        .updateExistingPerson(idToUpdate, { name: newName, number: newNumber })
+        .then(updatePersonsFromDb)
+        setErrorMessage(
+        `${newName} was updated in the phonebook`
+      )
+
       } else {
          console.log("You pressed Cancel!")
       }

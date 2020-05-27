@@ -11,8 +11,19 @@ const updatePersons = newPerson => {
   return request.then(response => response.data)
 }
 
-const updateExistingPerson = ( IDtoUpdate, personToUpdate ) => {
+const updateExistingPerson = ( IDtoUpdate, personToUpdate, setErrorMessage ) => {
   const request = axios.put(`${baseUrl}/${IDtoUpdate}`, personToUpdate)
+                  .catch(error => {
+                    setErrorMessage(
+                      `the information of '${personToUpdate.name}' was already deleted from the server`
+                    )
+                    setTimeout(() => {
+                      setErrorMessage(null)
+                    }, 3000)
+                    return "Error handled"
+                    })
+
+                  
   return request.then(response => response.data)
 }
 

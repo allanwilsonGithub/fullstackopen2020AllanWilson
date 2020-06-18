@@ -6,9 +6,18 @@ const getAll = () => {
   return request.then(response => response.data)
 }
 
-const updatePersons = newPerson => {
+const updatePersons = ( newPerson, setErrorMessage ) => {
   const request = axios.post(baseUrl, newPerson)
-  return request.then(response => response.data)
+                   .catch(error => {
+                     setErrorMessage(
+                       `${JSON.stringify(error.response)}`
+                     )
+                     setTimeout(() => {
+                      setErrorMessage(null)
+                    }, 3000)
+                    return "Error handled"
+                    })
+return request.then(response => response.data)
 }
 
 const updateExistingPerson = ( IDtoUpdate, personToUpdate, setErrorMessage ) => {

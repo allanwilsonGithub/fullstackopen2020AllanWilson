@@ -20,6 +20,7 @@ const App = () => {
       })
   }, [])
 
+
   const addPerson = (event) => {
       event.preventDefault()
       if (typeof (persons.find(x => x.name === newName)) != "undefined") {
@@ -28,7 +29,7 @@ const App = () => {
         const idToUpdate = persons.find(x => x.name === newName).id
         personsService
         .updateExistingPerson(idToUpdate, { name: newName, number: newNumber }, setErrorMessage)
-        .then(updatePersonsFromDb)
+        .then(updatePersonsFromDb) 
         setErrorMessage(
         `${newName} was updated in the phonebook`
       )
@@ -41,9 +42,9 @@ const App = () => {
       }
 
       } else {
-          setPersons([...persons, { name: newName, number: newNumber }])
+          setPersons([...persons, { name: newName, number: newNumber }], setErrorMessage)
           personsService
-          .updatePersons({ name: newName, number: newNumber })
+          .updatePersons({ name: newName, number: newNumber }, setErrorMessage)
           .then(updatePersonsFromDb)
           setErrorMessage(
           `${newName} was added to the phonebook`

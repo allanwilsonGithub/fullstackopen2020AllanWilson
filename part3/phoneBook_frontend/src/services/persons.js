@@ -10,11 +10,11 @@ const updatePersons = ( newPerson, setErrorMessage ) => {
   const request = axios.post(baseUrl, newPerson)
                    .catch(error => {
                      setErrorMessage(
-                       `${JSON.stringify(error.response)}`
+                       `${JSON.stringify(error.response.data.error)}`
                      )
                      setTimeout(() => {
                       setErrorMessage(null)
-                    }, 3000)
+                    }, 5000)
                     return "Error handled"
                     })
 return request.then(response => response.data)
